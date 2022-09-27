@@ -1,4 +1,4 @@
-package api
+package apps
 
 import (
 	"fmt"
@@ -21,7 +21,7 @@ type apiRequest struct {
 	Version          string `json:"version"`
 }
 
-func (i *IBAPIExtractor) buildHeaders() (http.Header, error) {
+func (i *Client) buildHeaders() (http.Header, error) {
 	authToken := i.Config.APIToken
 	if authToken == "" {
 		err := "API Token not supplied"
@@ -35,7 +35,7 @@ func (i *IBAPIExtractor) buildHeaders() (http.Header, error) {
 	}, nil
 }
 
-func (i *IBAPIExtractor) buildRunURL(version string) (string, error) {
+func (i *Client) buildRunURL(version string) (string, error) {
 
 	parsedURL, err := url.Parse(i.Config.RootURL)
 	if err != nil {
@@ -44,18 +44,18 @@ func (i *IBAPIExtractor) buildRunURL(version string) (string, error) {
 		return "", fmt.Errorf(err)
 	}
 	parsedURL.Path = path.Join(parsedURL.Path, "api",
-		version, "/solution/run_developers_portal")
+		version, "/cloud/app/run")
 	parsedPath := parsedURL.String()
 	return parsedPath, nil
 }
 
-func (i *IBAPIExtractor) verboseLog(format string, args ...interface{}) {
+func (i *Client) verboseLog(format string, args ...interface{}) {
 	if !i.Config.VerboseLog {
 		return
 	}
 	i.Config.Logger.Printf(format, args...)
 }
 
-func (i *IBAPIExtractor) log(format string, args ...interface{}) {
+func (i *Client) log(format string, args ...interface{}) {
 	i.Config.Logger.Printf(format, args...)
 }

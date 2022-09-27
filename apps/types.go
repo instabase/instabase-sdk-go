@@ -1,4 +1,4 @@
-package api
+package apps
 
 // RegionProvenance stores provenance information for regions denoted by
 // co-ordinate of top-left and bottom-right pixel of region
@@ -50,6 +50,8 @@ type Record struct {
 // Response stores the error message in case of errors and a list of records
 // extracted for the document
 type Response struct {
-	Error   string   `json:"error,omitempty"`
-	Records []Record `json:"records"`
+	Error         string   `json:"error,omitempty"`
+	Records       []Record `json:"records"`
+	APIVersion    string   `json:"api_version"`
+	InputFileName string   `json:"input_file_name"`
 }

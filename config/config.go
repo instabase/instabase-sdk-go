@@ -15,7 +15,7 @@ type Config struct {
 	// Expected Environment Variable: `IB_API_TOKEN`
 	APIToken string `envconfig:"API_TOKEN" default:""`
 	// Expected Environment Variable: `IB_ROOT_URL`
-	RootURL string `envconfig:"ROOT_URL" default:"https://apps.instabase.com/"`
+	RootURL string `envconfig:"ROOT_URL" default:""`
 }
 
 // NewAppConfigFromEnv constructs a new Config object and initializes all the fields

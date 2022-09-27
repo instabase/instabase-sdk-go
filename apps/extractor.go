@@ -1,4 +1,4 @@
-package api
+package apps
 
 import (
 	"bytes"
@@ -13,14 +13,14 @@ import (
 	"github.com/instabase/instabase-sdk-go/config"
 )
 
-// IBAPIExtractor exposes all the API extraction capabilities of Instabase
-type IBAPIExtractor struct {
+// Client exposes all the API extraction capabilities of Instabase
+type Client struct {
 	Config *config.Config
 }
 
 // ExtractFromBytes extracts information for an input file represented by
 // bytesContent and fileName
-func (i *IBAPIExtractor) ExtractFromBytes(bytesContent []byte,
+func (i *Client) ExtractFromBytes(bytesContent []byte,
 	fileName, appName, appVersion string) (*Response, error) {
 	if appName == "" {
 		return nil, fmt.Errorf("Missing a required field: app name")
@@ -84,12 +84,17 @@ func (i *IBAPIExtractor) ExtractFromBytes(bytesContent []byte,
 		return nil, err
 	}
 
-	result := Response{Error: parsedResp.Err, Records: parsedResp.Records}
+	result := Response{
+		Error:         parsedResp.Err,
+		Records:       parsedResp.Records,
+		APIVersion:    parsedResp.APIVersion,
+		InputFileName: parsedResp.InputFileName,
+	}
 	return &result, nil
 }
 
 // ExtractFromInputURL extracts information for provided file located at fileURL
-func (i *IBAPIExtractor) ExtractFromInputURL(fileURL, appName,
+func (i *Client) ExtractFromInputURL(fileURL, appName,
 	appVersion string) (*Response, error) {
 	if fileURL == "" {
 		return nil, fmt.Errorf("%s is an invalid file URL", fileURL)
