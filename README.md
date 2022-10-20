@@ -10,8 +10,8 @@ You can create config object from environment variables or supply config object 
 
 You will need to set the following environment variables:
 
-1. `IB_API_TOKEN` : Your API token from Instabase Apps website.
-2. `IB_ROOT_URL` : Root URL of Instabase App website.
+1. `IB_API_TOKEN` : Your API token from Instabase website.
+2. `IB_ROOT_URL` : Root URL of Instabase website.
 3. `IB_VERBOSE_LOG` (optional): Valid values are true and false. Set to true to turn on verbose logging.
 
 ### Manual config
