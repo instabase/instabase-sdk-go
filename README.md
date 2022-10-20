@@ -1,10 +1,10 @@
-# Instabase Apps SDK
+# Instabase SDK
 
-Use this SDK to access apps client provided by Instabase.
+Use this SDK to access Instabase applications.
 
 ## Configuration
 
-You can create config object from environment variables or supply config at runtime.
+You can create config object from environment variables or supply config object at runtime.
 
 ### Environment variable based config
 
